@@ -50,7 +50,7 @@
 
 IDEF1X схема БД:
 
-![IDEF1X](doc-images/idef1x.jpg)
+![IDEF1X](doc-images/idef1x.jpeg)
 
 Сущности и их поля в БД:
 

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"spaceicebreaker"},{"l":"spaceicebreaker.controllers"},{"l":"spaceicebreaker.dao"},{"l":"spaceicebreaker.dao.utils"},{"l":"spaceicebreaker.gui"},{"l":"spaceicebreaker.gui.game"},{"l":"spaceicebreaker.models"},{"l":"spaceicebreaker.utils"}];updateSearchResults();

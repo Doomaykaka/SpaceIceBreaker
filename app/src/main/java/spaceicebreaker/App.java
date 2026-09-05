@@ -2,17 +2,17 @@ package spaceicebreaker;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import spaceicebreaker.gui.MenuWindow;
 import spaceicebreaker.models.Statistic;
 import spaceicebreaker.models.User;
 import spaceicebreaker.utils.ApplicationConfigReader;
 import spaceicebreaker.utils.HibernateConfiguration;
 import spaceicebreaker.utils.Logger;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class App {
     private static final long SCREENSAVER_TIME = 5000;

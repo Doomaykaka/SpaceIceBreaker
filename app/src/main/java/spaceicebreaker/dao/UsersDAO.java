@@ -1,13 +1,13 @@
 package spaceicebreaker.dao;
 
-import spaceicebreaker.dao.utils.EntityDAO;
-import spaceicebreaker.models.User;
-import spaceicebreaker.utils.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import spaceicebreaker.dao.utils.EntityDAO;
+import spaceicebreaker.models.User;
+import spaceicebreaker.utils.Logger;
 
 public class UsersDAO extends EntityDAO<User> {
     public UsersDAO(EntityManagerFactory entityManagerFactory) {

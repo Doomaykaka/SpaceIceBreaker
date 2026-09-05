@@ -1,7 +1,5 @@
 package spaceicebreaker.utils;
 
-import spaceicebreaker.models.Statistic;
-import spaceicebreaker.models.User;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,6 +9,8 @@ import java.time.Instant;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
+import spaceicebreaker.models.Statistic;
+import spaceicebreaker.models.User;
 
 public class SupportFunctions {
     public static User createEmptyUser(String name) {
@@ -30,12 +30,7 @@ public class SupportFunctions {
         Long tankBestScore = 0L;
         Long damageDealerBestScore = 0L;
 
-        return new Statistic(
-                lastPlayDate,
-                daysInGame,
-                scoutBestScore,
-                tankBestScore,
-                damageDealerBestScore);
+        return new Statistic(lastPlayDate, daysInGame, scoutBestScore, tankBestScore, damageDealerBestScore);
     }
 
     public static void writeContentInNewFile(File folderToSave, String name, List<String> content) {

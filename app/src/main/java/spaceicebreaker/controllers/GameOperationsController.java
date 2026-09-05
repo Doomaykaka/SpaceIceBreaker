@@ -1,12 +1,5 @@
 package spaceicebreaker.controllers;
 
-import spaceicebreaker.dao.StatisticsDAO;
-import spaceicebreaker.dao.UsersDAO;
-import spaceicebreaker.models.Statistic;
-import spaceicebreaker.models.User;
-import spaceicebreaker.utils.Constants;
-import spaceicebreaker.utils.Logger;
-import spaceicebreaker.utils.SupportFunctions;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,6 +10,13 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import spaceicebreaker.dao.StatisticsDAO;
+import spaceicebreaker.dao.UsersDAO;
+import spaceicebreaker.models.Statistic;
+import spaceicebreaker.models.User;
+import spaceicebreaker.utils.Constants;
+import spaceicebreaker.utils.Logger;
+import spaceicebreaker.utils.SupportFunctions;
 
 public class GameOperationsController {
     private UsersDAO usersDAO;
@@ -120,28 +120,16 @@ public class GameOperationsController {
         Long id = statistic.getId();
         Date lastPlayDate = statistic.getLastPlayDate();
         Long daysInGame = statistic.getDaysInGame();
-        Long easyWins = statistic.getEasyWins();
-        Long middleWins = statistic.getMiddleWins();
-        Long hardWins = statistic.getHardWins();
-        Long easyBestTime = statistic.getEasyBestTime();
-        Long middleBestTime = statistic.getMiddleBestTime();
-        Long hardBestTime = statistic.getHardBestTime();
-        Long easyLose = statistic.getEasyLose();
-        Long middleLose = statistic.getMiddleLose();
-        Long hardLose = statistic.getHardLose();
+        Long scoutBestScore = statistic.getScoutBestScore();
+        Long tankBestScore = statistic.getTankBestScore();
+        Long damageDealerBestScore = statistic.getDamageDealerBestScore();
 
         statisticObj.put("id", id);
         statisticObj.put("lastPlayDate", lastPlayDate.toInstant().getEpochSecond());
         statisticObj.put("daysInGame", daysInGame);
-        statisticObj.put("easyWins", easyWins);
-        statisticObj.put("middleWins", middleWins);
-        statisticObj.put("hardWins", hardWins);
-        statisticObj.put("easyBestTime", easyBestTime);
-        statisticObj.put("middleBestTime", middleBestTime);
-        statisticObj.put("hardBestTime", hardBestTime);
-        statisticObj.put("easyLose", easyLose);
-        statisticObj.put("middleLose", middleLose);
-        statisticObj.put("hardLose", hardLose);
+        statisticObj.put("scoutBestScore", scoutBestScore);
+        statisticObj.put("tankBestScore", tankBestScore);
+        statisticObj.put("damageDealerBestScore", damageDealerBestScore);
 
         StringWriter stringWriter = new StringWriter();
 
@@ -200,28 +188,11 @@ public class GameOperationsController {
 
         Date lastPlayDate = new Date((Long) statisticObj.get("lastPlayDate") * Constants.SECONDS_TO_MILLIS_MULTIPLIER);
         Long daysInGame = (Long) statisticObj.get("daysInGame");
-        Long easyWins = (Long) statisticObj.get("easyWins");
-        Long middleWins = (Long) statisticObj.get("middleWins");
-        Long hardWins = (Long) statisticObj.get("hardWins");
-        Long easyBestTime = (Long) statisticObj.get("easyBestTime");
-        Long middleBestTime = (Long) statisticObj.get("middleBestTime");
-        Long hardBestTime = (Long) statisticObj.get("hardBestTime");
-        Long easyLose = (Long) statisticObj.get("easyLose");
-        Long middleLose = (Long) statisticObj.get("middleLose");
-        Long hardLose = (Long) statisticObj.get("hardLose");
+        Long scoutBestScore = (Long) statisticObj.get("scoutBestScore");
+        Long tankBestScore = (Long) statisticObj.get("tankBestScore");
+        Long damageDealerBestScore = (Long) statisticObj.get("damageDealerBestScore");
 
-        statistic = new Statistic(
-                lastPlayDate,
-                daysInGame,
-                easyWins,
-                middleWins,
-                hardWins,
-                easyBestTime,
-                middleBestTime,
-                hardBestTime,
-                easyLose,
-                middleLose,
-                hardLose);
+        statistic = new Statistic(lastPlayDate, daysInGame, scoutBestScore, tankBestScore, damageDealerBestScore);
 
         return statistic;
     }

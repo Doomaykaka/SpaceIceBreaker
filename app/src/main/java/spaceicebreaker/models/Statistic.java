@@ -36,11 +36,7 @@ public class Statistic {
     public Statistic() {}
 
     public Statistic(
-            Date lastPlayDate,
-            Long daysInGame,
-            Long scoutBestScore,
-            Long tankBestScore,
-            Long damageDealerBestScore) {
+            Date lastPlayDate, Long daysInGame, Long scoutBestScore, Long tankBestScore, Long damageDealerBestScore) {
         final Long DEFAULT_ID = null;
 
         this.id = DEFAULT_ID;
@@ -106,15 +102,13 @@ public class Statistic {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         Statistic other = (Statistic) obj;
         return Objects.equals(damageDealerBestScore, other.damageDealerBestScore)
-                && Objects.equals(daysInGame, other.daysInGame) && Objects.equals(id, other.id)
+                && Objects.equals(daysInGame, other.daysInGame)
+                && Objects.equals(id, other.id)
                 && Objects.equals(lastPlayDate, other.lastPlayDate)
                 && Objects.equals(scoutBestScore, other.scoutBestScore)
                 && Objects.equals(tankBestScore, other.tankBestScore);

@@ -1,12 +1,12 @@
-package deusmatrix.gui;
+package spaceicebreaker.gui;
 
-import deusmatrix.utils.Logger;
-import deusmatrix.utils.SupportFunctions;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import spaceicebreaker.utils.Logger;
+import spaceicebreaker.utils.SupportFunctions;
 
 public class MenuWindow extends JFrame {
     private ScreensaverWindow screensaverWindow = null;

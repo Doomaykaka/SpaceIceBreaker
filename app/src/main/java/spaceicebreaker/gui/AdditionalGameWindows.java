@@ -1,12 +1,13 @@
-package deusmatrix.gui;
+package spaceicebreaker.gui;
 
-import deusmatrix.controllers.GameOperationsController;
-import deusmatrix.dao.*;
-import deusmatrix.models.GameDifficult;
-import deusmatrix.models.User;
-import deusmatrix.utils.HibernateConfiguration;
-import deusmatrix.utils.Logger;
 import javax.swing.*;
+import spaceicebreaker.controllers.GameOperationsController;
+import spaceicebreaker.dao.*;
+import spaceicebreaker.gui.game.GameWindow;
+import spaceicebreaker.models.GameClass;
+import spaceicebreaker.models.User;
+import spaceicebreaker.utils.HibernateConfiguration;
+import spaceicebreaker.utils.Logger;
 
 public class AdditionalGameWindows {
     private static volatile GameOperationsController gameOperationsController;
@@ -28,37 +29,37 @@ public class AdditionalGameWindows {
 
     public static void selectGameSetting(User user) {
         SwingUtilities.invokeLater(() -> {
-            Object[] options = {"Easy", "Middle", "Hard"};
+            Object[] options = {"Scout", "Tank", "Damage dealer"};
 
             int choice = JOptionPane.showOptionDialog(
                     null,
-                    "Select the game difficult",
-                    "Game difficult selection",
+                    "Choose a character class",
+                    "Character class selection",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     options,
                     options[0]);
 
-            GameClass difficult = null;
+            GameClass characterClass = null;
 
             if (choice == 0) {
-                Logger.getInstance().info("Easy game setting chose");
+                Logger.getInstance().info("Scout class chose");
 
-                difficult = GameClass.EASY;
+                characterClass = GameClass.SCOUT;
             } else if (choice == 1) {
-                Logger.getInstance().info("Middle game setting chose");
+                Logger.getInstance().info("Tank class chose");
 
-                difficult = GameClass.MIDDLE;
+                characterClass = GameClass.TANK;
             } else if (choice == 2) {
-                Logger.getInstance().info("Hard game setting chose");
+                Logger.getInstance().info("Damage dealer class chose");
 
-                difficult = GameClass.HARD;
+                characterClass = GameClass.DAMAGE_DEALER;
             } else {
                 return;
             }
 
-            GameWindow gameWindow = new GameWindow(user, difficult);
+            GameWindow gameWindow = new GameWindow(user, characterClass);
             gameWindow.create();
         });
     }

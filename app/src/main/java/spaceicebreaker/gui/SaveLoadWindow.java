@@ -1,17 +1,17 @@
-package deusmatrix.gui;
+package spaceicebreaker.gui;
 
-import deusmatrix.controllers.GameOperationsController;
-import deusmatrix.dao.*;
-import deusmatrix.models.Statistic;
-import deusmatrix.models.User;
-import deusmatrix.utils.HibernateConfiguration;
-import deusmatrix.utils.SupportFunctions;
 import java.awt.*;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import spaceicebreaker.controllers.GameOperationsController;
+import spaceicebreaker.dao.*;
+import spaceicebreaker.models.Statistic;
+import spaceicebreaker.models.User;
+import spaceicebreaker.utils.HibernateConfiguration;
+import spaceicebreaker.utils.SupportFunctions;
 
 public class SaveLoadWindow extends JFrame {
     private static GameOperationsController gameOperationsController;
@@ -175,32 +175,14 @@ public class SaveLoadWindow extends JFrame {
             builder.append("days in game - ");
             builder.append(statistic.getDaysInGame());
             builder.append("\n");
-            builder.append("easy difficult wins - ");
-            builder.append(statistic.getEasyWins());
+            builder.append("scout best score - ");
+            builder.append(statistic.getScoutBestScore());
             builder.append("\n");
-            builder.append("middle difficult wins - ");
-            builder.append(statistic.getMiddleWins());
+            builder.append("tank best score - ");
+            builder.append(statistic.getTankBestScore());
             builder.append("\n");
-            builder.append("hard difficult wins - ");
-            builder.append(statistic.getHardWins());
-            builder.append("\n");
-            builder.append("easy difficult best time (sec) - ");
-            builder.append(statistic.getEasyBestTime());
-            builder.append("\n");
-            builder.append("middle difficult best time (sec) - ");
-            builder.append(statistic.getMiddleBestTime());
-            builder.append("\n");
-            builder.append("hard difficult best time (sec) - ");
-            builder.append(statistic.getHardBestTime());
-            builder.append("\n");
-            builder.append("easy difficult lose count - ");
-            builder.append(statistic.getEasyLose());
-            builder.append("\n");
-            builder.append("middle difficult lose count - ");
-            builder.append(statistic.getMiddleLose());
-            builder.append("\n");
-            builder.append("hard difficult lose count - ");
-            builder.append(statistic.getHardLose());
+            builder.append("damage dealer best score - ");
+            builder.append(statistic.getDamageDealerBestScore());
 
             SupportFunctions.showMessage(builder.toString());
         }

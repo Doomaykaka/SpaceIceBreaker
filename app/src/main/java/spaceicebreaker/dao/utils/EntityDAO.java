@@ -1,6 +1,5 @@
 package spaceicebreaker.dao.utils;
 
-import spaceicebreaker.utils.Logger;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,6 +8,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import spaceicebreaker.utils.Logger;
 
 public abstract class EntityDAO<T> {
     protected EntityManagerFactory entityManagerFactory;

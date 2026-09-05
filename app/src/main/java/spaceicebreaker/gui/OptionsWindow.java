@@ -1,12 +1,12 @@
-package deusmatrix.gui;
+package spaceicebreaker.gui;
 
-import deusmatrix.utils.ApplicationConfigReader;
-import deusmatrix.utils.SupportFunctions;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import spaceicebreaker.utils.ApplicationConfigReader;
+import spaceicebreaker.utils.SupportFunctions;
 
 public class OptionsWindow extends JFrame {
     private static final int WIDTH = 250;

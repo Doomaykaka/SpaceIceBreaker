@@ -1,0 +1,8 @@
+spaceicebreaker
+spaceicebreaker.controllers
+spaceicebreaker.dao
+spaceicebreaker.dao.utils
+spaceicebreaker.gui
+spaceicebreaker.gui.game
+spaceicebreaker.models
+spaceicebreaker.utils

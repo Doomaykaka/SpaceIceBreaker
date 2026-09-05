@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 
-var version = [0, 2, 0]
+var version = [0, 3, 0]
 
 dependencies {
     // Testing
@@ -36,6 +36,8 @@ dependencies {
     implementation 'org.javassist:javassist:3.25.0-GA'
 
     // Database
+    implementation 'org.xerial:sqlite-jdbc:3.50.3.0'
+    
     // JSON
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 }

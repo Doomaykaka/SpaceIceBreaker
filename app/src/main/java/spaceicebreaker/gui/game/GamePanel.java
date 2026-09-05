@@ -48,6 +48,8 @@ public class GamePanel extends JPanel implements ActionListener {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
 
+    private static final int TIMER_DELAY_FOR_60_FPS = 16;
+
     public GamePanel(
             GameWindow window,
             User user,
@@ -71,7 +73,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
         restart();
 
-        windowTimer = new Timer(16, this); // 60 FPS
+        windowTimer = new Timer(TIMER_DELAY_FOR_60_FPS, this);
         windowTimer.start();
     }
 
@@ -161,23 +163,18 @@ public class GamePanel extends JPanel implements ActionListener {
 
         drawStars(g2);
 
-        // Игрок
         if (!gameOver) drawPlayer(g2);
 
-        // Астероиды
         for (Asteroid a : asteroids) a.draw(g2);
 
-        // Враги
         for (Enemy e : enemies) e.draw(g2);
 
-        // Пули
         g2.setColor(new Color(80, 200, 255));
         for (Bullet b : bullets) b.draw(g2);
 
         g2.setColor(new Color(255, 100, 80));
         for (Bullet b : enemyBullets) b.draw(g2);
 
-        // Частицы (взрывы)
         for (Particle p : particles) p.draw(g2);
 
         drawHUD(g2);
@@ -195,15 +192,63 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private void drawPlayer(Graphics2D g) {
+        switch (characterClass) {
+            case GameClass.SCOUT:
+                drawScoutPlayer(g);
+                break;
+            case GameClass.TANK:
+                drawTankPlayer(g);
+                break;
+            case GameClass.DAMAGE_DEALER:
+                drawDamageDealerPlayer(g);
+                break;
+        }
+    }
+
+    private void drawScoutPlayer(Graphics2D g) {
         int[] x = {playerX, playerX - 14, playerX - 7, playerX + 7, playerX + 14};
         int[] y = {playerY - 20, playerY + 12, playerY + 6, playerY + 6, playerY + 12};
         g.setColor(new Color(100, 200, 255));
         g.fillPolygon(x, y, 5);
         g.setColor(Color.CYAN);
         g.drawPolygon(x, y, 5);
-        // сопло двигателя
+
         g.setColor(Color.ORANGE);
         g.fillOval(playerX - 4, playerY + 6, 8, 10);
+    }
+
+    private void drawTankPlayer(Graphics2D g) {
+        int[] tankX = {playerX - 18, playerX, playerX + 18, playerX + 12, playerX - 12};
+        int[] tankY = {playerY - 10, playerY - 24, playerY - 10, playerY + 14, playerY + 14};
+
+        g.setColor(new Color(80, 80, 100));
+        g.fillPolygon(tankX, tankY, 5);
+        g.setColor(Color.GRAY);
+        g.drawPolygon(tankX, tankY, 5);
+
+        g.setColor(Color.ORANGE);
+        g.fillRect(playerX - 4, playerY - 6, 8, 12);
+
+        g.setColor(new Color(100, 100, 130));
+        g.fillOval(playerX - 20, playerY + 4, 12, 8);
+        g.fillOval(playerX + 8, playerY + 4, 12, 8);
+    }
+
+    private void drawDamageDealerPlayer(Graphics2D g) {
+        int[] dmgX = {playerX - 8, playerX, playerX + 8, playerX + 4, playerX - 4};
+        int[] dmgY = {playerY - 16, playerY - 26, playerY - 16, playerY + 10, playerY + 10};
+
+        g.setColor(new Color(200, 50, 50));
+        g.fillPolygon(dmgX, dmgY, 5);
+        g.setColor(Color.RED);
+        g.drawPolygon(dmgX, dmgY, 5);
+
+        g.setColor(Color.YELLOW);
+        g.fillOval(playerX - 14, playerY - 4, 6, 10);
+        g.fillOval(playerX + 8, playerY - 4, 6, 10);
+
+        g.setColor(Color.MAGENTA);
+        g.fillOval(playerX - 3, playerY + 2, 6, 6);
     }
 
     private void drawHUD(Graphics2D g) {
@@ -211,7 +256,10 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setColor(Color.WHITE);
         g.drawString("HP: " + gameController.getLivesCount(), 16, 30);
 
-        // полоса здоровья
+        drawHealthBar(g);
+    }
+
+    private void drawHealthBar(Graphics2D g) {
         int barW = 200;
         int barH = 14;
         int barX = 16;
@@ -243,7 +291,28 @@ public class GamePanel extends JPanel implements ActionListener {
             return;
         }
 
-        // ── Движение игрока ──
+        playerMove();
+
+        playerShoot();
+
+        objectsSpawn();
+
+        asteroidsUpdate();
+
+        enemiesUpdate();
+
+        userBulletsUpdate();
+
+        enemiesBulletsUpdate();
+
+        effectsUpdate();
+
+        if (gameController.getLivesCount() <= 0) gameOver = true;
+
+        repaint();
+    }
+
+    private void playerMove() {
         int speed = 4;
         if (left) playerX -= speed;
         if (right) playerX += speed;
@@ -251,15 +320,35 @@ public class GamePanel extends JPanel implements ActionListener {
         if (down) playerY += speed;
         playerX = Math.max(15, Math.min(WIDTH - 15, playerX));
         playerY = Math.max(25, Math.min(HEIGHT - 15, playerY));
+    }
 
-        // ── Стрельба игрока ──
+    private void playerShoot() {
         if (shooting && shootCooldown <= 0) {
-            bullets.add(new Bullet(playerX, playerY - 20, 0, -8, true));
-            shootCooldown = 12;
+            switch (characterClass) {
+                case GameClass.SCOUT:
+                    bullets.add(new Bullet(playerX, playerY - 50, 0, -8, true));
+                    bullets.add(new Bullet(playerX, playerY - 30, 0, -8, true));
+                    bullets.add(new Bullet(playerX, playerY - 10, 0, -8, true));
+                    shootCooldown = 12;
+                    break;
+                case GameClass.TANK:
+                    bullets.add(new Bullet(playerX - 20, playerY - 20, 0, -8, true));
+                    bullets.add(new Bullet(playerX, playerY - 20, 0, -8, true));
+                    bullets.add(new Bullet(playerX + 20, playerY - 20, 0, -8, true));
+                    shootCooldown = 24;
+                    break;
+                case GameClass.DAMAGE_DEALER:
+                    bullets.add(new Bullet(playerX, playerY - 20, -1, -8, true));
+                    bullets.add(new Bullet(playerX, playerY - 20, 0, -8, true));
+                    bullets.add(new Bullet(playerX, playerY - 20, 1, -8, true));
+                    shootCooldown = 24;
+                    break;
+            }
         }
         if (shootCooldown > 0) shootCooldown--;
+    }
 
-        // ── Спавн ──
+    private void objectsSpawn() {
         spawnTick++;
         if (spawnTick % 40 == 0) {
             asteroids.add(new Asteroid(rnd.nextInt(WIDTH), -30));
@@ -267,8 +356,9 @@ public class GamePanel extends JPanel implements ActionListener {
         if (spawnTick % 90 == 0) {
             enemies.add(new Enemy(rnd.nextInt(WIDTH - 40) + 20, -30));
         }
+    }
 
-        // ── Обновление объектов ──
+    private void asteroidsUpdate() {
         Iterator<Asteroid> aIt = asteroids.iterator();
         while (aIt.hasNext()) {
             Asteroid a = aIt.next();
@@ -283,7 +373,9 @@ public class GamePanel extends JPanel implements ActionListener {
                 aIt.remove();
             }
         }
+    }
 
+    private void enemiesUpdate() {
         Iterator<Enemy> eIt = enemies.iterator();
         while (eIt.hasNext()) {
             Enemy en = eIt.next();
@@ -298,14 +390,15 @@ public class GamePanel extends JPanel implements ActionListener {
                 eIt.remove();
                 continue;
             }
-            // враг стреляет
+
             if (rnd.nextInt(60) == 0) {
                 enemyBullets.add(
                         new Bullet(en.x, en.y + 12, (playerX - en.x) * 0.05, (playerY - en.y) * 0.05 + 3, false));
             }
         }
+    }
 
-        // пули игрока
+    private void userBulletsUpdate() {
         Iterator<Bullet> bIt = bullets.iterator();
         while (bIt.hasNext()) {
             Bullet b = bIt.next();
@@ -314,29 +407,38 @@ public class GamePanel extends JPanel implements ActionListener {
                 bIt.remove();
                 continue;
             }
-            // по астероидам
-            for (Iterator<Asteroid> it = asteroids.iterator(); it.hasNext(); ) {
-                Asteroid a = it.next();
-                if (b.hits(a.x, a.y, a.r)) {
-                    spawnExplosion(a.x, a.y, Color.GRAY);
-                    it.remove();
-                    bIt.remove();
-                    break;
-                }
-            }
-            // по врагам
-            for (Iterator<Enemy> it = enemies.iterator(); it.hasNext(); ) {
-                Enemy en = it.next();
-                if (b.hits(en.x, en.y, 16)) {
-                    spawnExplosion(en.x, en.y, Color.RED);
-                    it.remove();
-                    bIt.remove();
-                    break;
-                }
+
+            userBulletsOnAsteroidUpdate(b, bIt);
+
+            userBulletsOnEnemiesUpdate(b, bIt);
+        }
+    }
+
+    private void userBulletsOnAsteroidUpdate(Bullet b, Iterator<Bullet> bIt) {
+        for (Iterator<Asteroid> it = asteroids.iterator(); it.hasNext(); ) {
+            Asteroid a = it.next();
+            if (b.hits(a.x, a.y, a.r)) {
+                spawnExplosion(a.x, a.y, Color.GRAY);
+                it.remove();
+                bIt.remove();
+                break;
             }
         }
+    }
 
-        // пули врагов
+    private void userBulletsOnEnemiesUpdate(Bullet b, Iterator<Bullet> bIt) {
+        for (Iterator<Enemy> it = enemies.iterator(); it.hasNext(); ) {
+            Enemy en = it.next();
+            if (b.hits(en.x, en.y, 16)) {
+                spawnExplosion(en.x, en.y, Color.RED);
+                it.remove();
+                bIt.remove();
+                break;
+            }
+        }
+    }
+
+    private void enemiesBulletsUpdate() {
         Iterator<Bullet> ebIt = enemyBullets.iterator();
         while (ebIt.hasNext()) {
             Bullet b = ebIt.next();
@@ -350,18 +452,15 @@ public class GamePanel extends JPanel implements ActionListener {
                 ebIt.remove();
             }
         }
+    }
 
-        // частицы
+    private void effectsUpdate() {
         Iterator<Particle> pIt = particles.iterator();
         while (pIt.hasNext()) {
             Particle p = pIt.next();
             p.update();
             if (p.life <= 0) pIt.remove();
         }
-
-        if (gameController.getLivesCount() <= 0) gameOver = true;
-
-        repaint();
     }
 
     private void spawnExplosion(double x, double y, Color c) {

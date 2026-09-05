@@ -149,7 +149,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
         Date lastPlayDate = userStatistic.getLastPlayDate();
         Date currentDate = Date.from(Instant.now());
-        
+
         userStatistic.setLastPlayDate(currentDate);
 
         Calendar lastPlayCalendar = Calendar.getInstance();
@@ -160,7 +160,7 @@ public class GamePanel extends JPanel implements ActionListener {
         boolean datesEquals = lastPlayCalendar.get(Calendar.YEAR) == currentCalendar.get(Calendar.YEAR)
                 && lastPlayCalendar.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH)
                 && lastPlayCalendar.get(Calendar.DAY_OF_MONTH) == currentCalendar.get(Calendar.DAY_OF_MONTH);
-        
+
         if (!datesEquals) {
             Long daysInGame = userStatistic.getDaysInGame();
             daysInGame++;

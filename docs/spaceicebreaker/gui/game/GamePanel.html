@@ -142,20 +142,26 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Asteroid.html" title="class in spaceicebreaker.gui.game">Asteroid</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#asteroids" class="member-name-link">asteroids</a></code></div>
+<div class="col-first even-row-color"><code>private static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#ASTEROID_SCORE_COAST" class="member-name-link">ASTEROID_SCORE_COAST</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#bullets" class="member-name-link">bullets</a></code></div>
+<div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Asteroid.html" title="class in spaceicebreaker.gui.game">Asteroid</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#asteroids" class="member-name-link">asteroids</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private <a href="../../models/GameClass.html" title="enum class in spaceicebreaker.models">GameClass</a></code></div>
-<div class="col-second even-row-color"><code><a href="#characterClass" class="member-name-link">characterClass</a></code></div>
+<div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#bullets" class="member-name-link">bullets</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private boolean</code></div>
-<div class="col-second odd-row-color"><code><a href="#down" class="member-name-link">down</a></code></div>
+<div class="col-first odd-row-color"><code>private <a href="../../models/GameClass.html" title="enum class in spaceicebreaker.models">GameClass</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#characterClass" class="member-name-link">characterClass</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Enemy.html" title="class in spaceicebreaker.gui.game">Enemy</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#enemies" class="member-name-link">enemies</a></code></div>
+<div class="col-first even-row-color"><code>private boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#down" class="member-name-link">down</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Enemy.html" title="class in spaceicebreaker.gui.game">Enemy</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#enemies" class="member-name-link">enemies</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#ENEMY_SCORE_COAST" class="member-name-link">ENEMY_SCORE_COAST</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#enemyBullets" class="member-name-link">enemyBullets</a></code></div>
@@ -543,6 +549,34 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 <dd>
 <ul class="tag-list">
 <li><a href="../../../constant-values.html#spaceicebreaker.gui.game.GamePanel.TIMER_DELAY_FOR_60_FPS">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ASTEROID_SCORE_COAST">
+<h3>ASTEROID_SCORE_COAST</h3>
+<div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">ASTEROID_SCORE_COAST</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../constant-values.html#spaceicebreaker.gui.game.GamePanel.ASTEROID_SCORE_COAST">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ENEMY_SCORE_COAST">
+<h3>ENEMY_SCORE_COAST</h3>
+<div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">ENEMY_SCORE_COAST</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../constant-values.html#spaceicebreaker.gui.game.GamePanel.ENEMY_SCORE_COAST">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>

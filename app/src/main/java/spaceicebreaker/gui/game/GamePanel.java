@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import javax.swing.JPanel;
@@ -18,6 +21,7 @@ import javax.swing.Timer;
 import spaceicebreaker.controllers.GameController;
 import spaceicebreaker.controllers.GameOperationsController;
 import spaceicebreaker.models.GameClass;
+import spaceicebreaker.models.Statistic;
 import spaceicebreaker.models.User;
 
 public class GamePanel extends JPanel implements ActionListener {
@@ -50,6 +54,9 @@ public class GamePanel extends JPanel implements ActionListener {
 
     private static final int TIMER_DELAY_FOR_60_FPS = 16;
 
+    private static final int ASTEROID_SCORE_COAST = 2;
+    private static final int ENEMY_SCORE_COAST = 10;
+
     public GamePanel(
             GameWindow window,
             User user,
@@ -75,6 +82,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
         windowTimer = new Timer(TIMER_DELAY_FOR_60_FPS, this);
         windowTimer.start();
+
+        setDoubleBuffered(true);
     }
 
     private void setupControls() {
@@ -134,7 +143,39 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private void endGame() {
-        gameController.giveRewards(playerScore, user);
+        this.gameController.giveRewards(playerScore, user);
+
+        Statistic userStatistic = user.getStatistic();
+
+        Date lastPlayDate = userStatistic.getLastPlayDate();
+        Date currentDate = Date.from(Instant.now());
+
+        Calendar lastPlayCalendar = Calendar.getInstance();
+        Calendar currentCalendar = Calendar.getInstance();
+        lastPlayCalendar.setTime(lastPlayDate);
+        currentCalendar.setTime(currentDate);
+
+        boolean datesEquals = lastPlayCalendar.get(Calendar.YEAR) == currentCalendar.get(Calendar.YEAR)
+                && lastPlayCalendar.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH)
+                && lastPlayCalendar.get(Calendar.DAY_OF_MONTH) == currentCalendar.get(Calendar.DAY_OF_MONTH);
+
+        if (!datesEquals) {
+            userStatistic.setLastPlayDate(currentDate);
+        }
+
+        if (characterClass == GameClass.SCOUT && playerScore > userStatistic.getScoutBestScore()) {
+            userStatistic.setScoutBestScore(playerScore);
+        }
+
+        if (characterClass == GameClass.TANK && playerScore > userStatistic.getTankBestScore()) {
+            userStatistic.setTankBestScore(playerScore);
+        }
+
+        if (characterClass == GameClass.DAMAGE_DEALER && playerScore > userStatistic.getDamageDealerBestScore()) {
+            userStatistic.setDamageDealerBestScore(playerScore);
+        }
+
+        this.gameOperationsController.updateUser(user);
 
         restart();
     }
@@ -153,6 +194,7 @@ public class GamePanel extends JPanel implements ActionListener {
         playerScore = 0;
 
         gameController.setLivesCount(user.getLevel());
+        gameController.setMaxLivesCount(user.getLevel());
     }
 
     @Override
@@ -255,6 +297,10 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setFont(new Font("Consolas", Font.BOLD, 18));
         g.setColor(Color.WHITE);
         g.drawString("HP: " + gameController.getLivesCount(), 16, 30);
+        g.drawString("Score: " + playerScore, 16, 80);
+        g.drawString("Player level: " + user.getLevel(), 16, 100);
+        g.drawString("Current XP: " + user.getExperience(), 16, 120);
+        g.drawString("XP to next level: " + user.getExperienceToNextLevel(), 16, 140);
 
         drawHealthBar(g);
     }
@@ -267,6 +313,7 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setColor(Color.DARK_GRAY);
         g.fillRect(barX, barY, barW, barH);
         float ratio = Math.max(0f, (float) gameController.getLivesCount() / gameController.getMaxLivesCount());
+        ratio = Math.min(ratio, 1f);
         g.setColor(ratio > 0.5f ? Color.GREEN : ratio > 0.25f ? Color.ORANGE : Color.RED);
         g.fillRect(barX, barY, (int) (barW * ratio), barH);
         g.setColor(Color.GRAY);
@@ -313,7 +360,20 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private void playerMove() {
-        int speed = 4;
+        int speed = 0;
+
+        switch (characterClass) {
+            case GameClass.SCOUT:
+                speed = 8;
+                break;
+            case GameClass.TANK:
+                speed = 6;
+                break;
+            case GameClass.DAMAGE_DEALER:
+                speed = 7;
+                break;
+        }
+
         if (left) playerX -= speed;
         if (right) playerX += speed;
         if (up) playerY -= speed;
@@ -329,7 +389,7 @@ public class GamePanel extends JPanel implements ActionListener {
                     bullets.add(new Bullet(playerX, playerY - 50, 0, -8, true));
                     bullets.add(new Bullet(playerX, playerY - 30, 0, -8, true));
                     bullets.add(new Bullet(playerX, playerY - 10, 0, -8, true));
-                    shootCooldown = 12;
+                    shootCooldown = 8;
                     break;
                 case GameClass.TANK:
                     bullets.add(new Bullet(playerX - 20, playerY - 20, 0, -8, true));
@@ -341,7 +401,7 @@ public class GamePanel extends JPanel implements ActionListener {
                     bullets.add(new Bullet(playerX, playerY - 20, -1, -8, true));
                     bullets.add(new Bullet(playerX, playerY - 20, 0, -8, true));
                     bullets.add(new Bullet(playerX, playerY - 20, 1, -8, true));
-                    shootCooldown = 24;
+                    shootCooldown = 16;
                     break;
             }
         }
@@ -364,13 +424,23 @@ public class GamePanel extends JPanel implements ActionListener {
             Asteroid a = aIt.next();
             a.update();
             if (a.y > HEIGHT + 40) {
-                aIt.remove();
+                try {
+                    aIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
+
                 continue;
             }
             if (a.hits(playerX, playerY)) {
                 gameController.subLives();
                 spawnExplosion(a.x, a.y, Color.GRAY);
-                aIt.remove();
+
+                try {
+                    aIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
             }
         }
     }
@@ -381,13 +451,24 @@ public class GamePanel extends JPanel implements ActionListener {
             Enemy en = eIt.next();
             en.update();
             if (en.y > HEIGHT + 40) {
-                eIt.remove();
+                try {
+                    eIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
+
                 continue;
             }
             if (en.hits(playerX, playerY)) {
                 gameController.subLives();
                 spawnExplosion(en.x, en.y, Color.RED);
-                eIt.remove();
+
+                try {
+                    eIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
+
                 continue;
             }
 
@@ -404,7 +485,12 @@ public class GamePanel extends JPanel implements ActionListener {
             Bullet b = bIt.next();
             b.update();
             if (b.y < -10 || b.y > HEIGHT + 10 || b.x < -10 || b.x > WIDTH + 10) {
-                bIt.remove();
+                try {
+                    bIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
+
                 continue;
             }
 
@@ -419,8 +505,16 @@ public class GamePanel extends JPanel implements ActionListener {
             Asteroid a = it.next();
             if (b.hits(a.x, a.y, a.r)) {
                 spawnExplosion(a.x, a.y, Color.GRAY);
-                it.remove();
-                bIt.remove();
+
+                try {
+                    it.remove();
+                    bIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
+
+                playerScore += ASTEROID_SCORE_COAST;
+
                 break;
             }
         }
@@ -431,8 +525,16 @@ public class GamePanel extends JPanel implements ActionListener {
             Enemy en = it.next();
             if (b.hits(en.x, en.y, 16)) {
                 spawnExplosion(en.x, en.y, Color.RED);
-                it.remove();
-                bIt.remove();
+
+                try {
+                    it.remove();
+                    bIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
+
+                playerScore += ENEMY_SCORE_COAST;
+
                 break;
             }
         }
@@ -444,12 +546,21 @@ public class GamePanel extends JPanel implements ActionListener {
             Bullet b = ebIt.next();
             b.update();
             if (b.y < -10 || b.y > HEIGHT + 10 || b.x < -10 || b.x > WIDTH + 10) {
-                ebIt.remove();
+                try {
+                    ebIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
                 continue;
             }
             if (b.hits(playerX, playerY, 14)) {
                 gameController.subLives();
-                ebIt.remove();
+
+                try {
+                    ebIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
             }
         }
     }
@@ -459,7 +570,12 @@ public class GamePanel extends JPanel implements ActionListener {
         while (pIt.hasNext()) {
             Particle p = pIt.next();
             p.update();
-            if (p.life <= 0) pIt.remove();
+            if (p.life <= 0)
+                try {
+                    pIt.remove();
+                } catch (IllegalStateException e) {
+                    ;
+                }
         }
     }
 

@@ -96,6 +96,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/gui/game/Asteroid.html#%3Cinit%3E(int,int)" class="member-name-link">Asteroid(int, int)</a> - Constructor for class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/Asteroid.html" title="class in spaceicebreaker.gui.game">Asteroid</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="spaceicebreaker/gui/game/GamePanel.html#ASTEROID_SCORE_COAST" class="member-name-link">ASTEROID_SCORE_COAST</a> - Static variable in class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/GamePanel.html" title="class in spaceicebreaker.gui.game">GamePanel</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/gui/game/GamePanel.html#asteroids" class="member-name-link">asteroids</a> - Variable in class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/GamePanel.html" title="class in spaceicebreaker.gui.game">GamePanel</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/gui/game/GamePanel.html#asteroidsUpdate()" class="member-name-link">asteroidsUpdate()</a> - Method in class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/GamePanel.html" title="class in spaceicebreaker.gui.game">GamePanel</a></dt>
@@ -151,8 +153,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="spaceicebreaker/utils/SupportFunctions.html#createEmptyStatistic()" class="member-name-link">createEmptyStatistic()</a> - Static method in class spaceicebreaker.utils.<a href="spaceicebreaker/utils/SupportFunctions.html" title="class in spaceicebreaker.utils">SupportFunctions</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/utils/SupportFunctions.html#createEmptyUser(java.lang.String)" class="member-name-link">createEmptyUser(String)</a> - Static method in class spaceicebreaker.utils.<a href="spaceicebreaker/utils/SupportFunctions.html" title="class in spaceicebreaker.utils">SupportFunctions</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="spaceicebreaker/controllers/GameController.html#createGameTimer()" class="member-name-link">createGameTimer()</a> - Method in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/controllers/GameOperationsController.html#createNewUser(java.lang.String)" class="member-name-link">createNewUser(String)</a> - Method in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameOperationsController.html" title="class in spaceicebreaker.controllers">GameOperationsController</a></dt>
 <dd>&nbsp;</dd>
@@ -253,6 +253,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="spaceicebreaker/gui/game/Enemy.html" class="type-name-link" title="class in spaceicebreaker.gui.game">Enemy</a> - Class in <a href="spaceicebreaker/gui/game/package-summary.html">spaceicebreaker.gui.game</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/gui/game/Enemy.html#%3Cinit%3E(int,int)" class="member-name-link">Enemy(int, int)</a> - Constructor for class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/Enemy.html" title="class in spaceicebreaker.gui.game">Enemy</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="spaceicebreaker/gui/game/GamePanel.html#ENEMY_SCORE_COAST" class="member-name-link">ENEMY_SCORE_COAST</a> - Static variable in class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/GamePanel.html" title="class in spaceicebreaker.gui.game">GamePanel</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/gui/game/GamePanel.html#enemyBullets" class="member-name-link">enemyBullets</a> - Variable in class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/GamePanel.html" title="class in spaceicebreaker.gui.game">GamePanel</a></dt>
 <dd>&nbsp;</dd>
@@ -489,8 +491,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="spaceicebreaker/gui/SaveLoadWindow.html#getTableListSelectionListener()" class="member-name-link">getTableListSelectionListener()</a> - Method in class spaceicebreaker.gui.<a href="spaceicebreaker/gui/SaveLoadWindow.html" title="class in spaceicebreaker.gui">SaveLoadWindow</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/models/Statistic.html#getTankBestScore()" class="member-name-link">getTankBestScore()</a> - Method in class spaceicebreaker.models.<a href="spaceicebreaker/models/Statistic.html" title="class in spaceicebreaker.models">Statistic</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="spaceicebreaker/controllers/GameController.html#getTimerSeconds()" class="member-name-link">getTimerSeconds()</a> - Method in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/utils/HibernateConfiguration.HibernatePersistenceUnitInfo.html#getTransactionType()" class="member-name-link">getTransactionType()</a> - Method in class spaceicebreaker.utils.<a href="spaceicebreaker/utils/HibernateConfiguration.HibernatePersistenceUnitInfo.html" title="class in spaceicebreaker.utils">HibernateConfiguration.HibernatePersistenceUnitInfo</a></dt>
 <dd>&nbsp;</dd>
@@ -810,6 +810,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/utils/ApplicationConfigReader.html#setLogApp(java.lang.Boolean)" class="member-name-link">setLogApp(Boolean)</a> - Method in class spaceicebreaker.utils.<a href="spaceicebreaker/utils/ApplicationConfigReader.html" title="class in spaceicebreaker.utils">ApplicationConfigReader</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="spaceicebreaker/controllers/GameController.html#setMaxLivesCount(java.lang.Long)" class="member-name-link">setMaxLivesCount(Long)</a> - Method in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/models/User.html#setName(java.lang.String)" class="member-name-link">setName(String)</a> - Method in class spaceicebreaker.models.<a href="spaceicebreaker/models/User.html" title="class in spaceicebreaker.models">User</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/utils/ApplicationConfigReader.html#setProperty(java.util.Properties,java.lang.String,java.lang.String)" class="member-name-link">setProperty(Properties, String, String)</a> - Method in class spaceicebreaker.utils.<a href="spaceicebreaker/utils/ApplicationConfigReader.html" title="class in spaceicebreaker.utils">ApplicationConfigReader</a></dt>
@@ -999,17 +1001,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/models/Statistic.html#tankBestScore" class="member-name-link">tankBestScore</a> - Variable in class spaceicebreaker.models.<a href="spaceicebreaker/models/Statistic.html" title="class in spaceicebreaker.models">Statistic</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="spaceicebreaker/controllers/GameController.html#timer" class="member-name-link">timer</a> - Variable in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="spaceicebreaker/controllers/GameController.html#TIMER_DELAY" class="member-name-link">TIMER_DELAY</a> - Static variable in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/gui/game/GamePanel.html#TIMER_DELAY_FOR_60_FPS" class="member-name-link">TIMER_DELAY_FOR_60_FPS</a> - Static variable in class spaceicebreaker.gui.game.<a href="spaceicebreaker/gui/game/GamePanel.html" title="class in spaceicebreaker.gui.game">GamePanel</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="spaceicebreaker/controllers/GameController.html#timerSeconds" class="member-name-link">timerSeconds</a> - Variable in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="spaceicebreaker/controllers/GameController.html#timerStart()" class="member-name-link">timerStart()</a> - Method in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="spaceicebreaker/controllers/GameController.html#timerStop()" class="member-name-link">timerStop()</a> - Method in class spaceicebreaker.controllers.<a href="spaceicebreaker/controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="spaceicebreaker/models/GameClass.html#toString()" class="member-name-link">toString()</a> - Method in enum class spaceicebreaker.models.<a href="spaceicebreaker/models/GameClass.html" title="enum class in spaceicebreaker.models">GameClass</a></dt>
 <dd>&nbsp;</dd>

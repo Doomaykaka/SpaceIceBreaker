@@ -1,49 +1,18 @@
 package spaceicebreaker.controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
 import spaceicebreaker.models.User;
 import spaceicebreaker.utils.Logger;
 
 public class GameController {
     private Long livesCount;
-    private final Long maxLivesCount;
-    private Timer timer;
-    private int timerSeconds;
+    private Long maxLivesCount;
 
-    private static final int TIMER_DELAY = 1000;
     private static final long START_EXPERIENCE_TO_NEXT_LEVEL_VALUE = 100;
-    private static final double EXPERIENCE_TO_NEXT_LEVEL_MULTIPLIER = 10;
+    private static final double EXPERIENCE_TO_NEXT_LEVEL_MULTIPLIER = 100;
 
     public GameController(User user) {
         this.livesCount = user.getLevel();
         this.maxLivesCount = user.getLevel();
-        this.timer = createGameTimer();
-        this.timerSeconds = 0;
-    }
-
-    private Timer createGameTimer() {
-        Logger.getInstance().info("Create game timer");
-
-        return new Timer(TIMER_DELAY, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timerSeconds++;
-            }
-        });
-    }
-
-    public int getTimerSeconds() {
-        return timerSeconds;
-    }
-
-    public void timerStart() {
-        this.timer.start();
-    }
-
-    public void timerStop() {
-        this.timer.stop();
     }
 
     public void subLives() {
@@ -56,6 +25,10 @@ public class GameController {
 
     public void setLivesCount(Long currentLivesCount) {
         livesCount = currentLivesCount;
+    }
+
+    public void setMaxLivesCount(Long newMaxLivesCount) {
+        maxLivesCount = newMaxLivesCount;
     }
 
     public Long getLivesCount() {
@@ -88,7 +61,7 @@ public class GameController {
 
     private long calculateExperienceToNextLevel(long level) {
         return Double.valueOf(START_EXPERIENCE_TO_NEXT_LEVEL_VALUE
-                        * Math.multiplyExact((long) EXPERIENCE_TO_NEXT_LEVEL_MULTIPLIER, level - 1))
+                        + Math.multiplyExact((long) EXPERIENCE_TO_NEXT_LEVEL_MULTIPLIER, level - 1))
                 .longValue();
     }
 }

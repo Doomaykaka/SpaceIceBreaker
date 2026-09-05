@@ -35,8 +35,6 @@ public class GameWindow extends JFrame {
         gameOperationsController = new GameOperationsController(usersDAO, statisticsDAO);
 
         gameController = new GameController(user);
-
-        gameController.timerStart();
     }
 
     private void initUI() {
@@ -60,8 +58,6 @@ public class GameWindow extends JFrame {
 
     public void create() {
         Logger.getInstance().info("launch");
-
-        this.gameController.timerStart();
 
         SwingUtilities.invokeLater(() -> setVisible(true));
     }

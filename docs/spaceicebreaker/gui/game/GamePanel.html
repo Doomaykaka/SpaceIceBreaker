@@ -142,41 +142,47 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>private static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#ASTEROID_SCORE_COAST" class="member-name-link">ASTEROID_SCORE_COAST</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Asteroid.html" title="class in spaceicebreaker.gui.game">Asteroid</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#asteroids" class="member-name-link">asteroids</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#bullets" class="member-name-link">bullets</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private <a href="../../models/GameClass.html" title="enum class in spaceicebreaker.models">GameClass</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#characterClass" class="member-name-link">characterClass</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private boolean</code></div>
-<div class="col-second even-row-color"><code><a href="#down" class="member-name-link">down</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Enemy.html" title="class in spaceicebreaker.gui.game">Enemy</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#enemies" class="member-name-link">enemies</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#ENEMY_SCORE_COAST" class="member-name-link">ENEMY_SCORE_COAST</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#enemyBullets" class="member-name-link">enemyBullets</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private <a href="../../controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></code></div>
-<div class="col-second even-row-color"><code><a href="#gameController" class="member-name-link">gameController</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private <a href="../../controllers/GameOperationsController.html" title="class in spaceicebreaker.controllers">GameOperationsController</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#gameOperationsController" class="member-name-link">gameOperationsController</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private boolean</code></div>
-<div class="col-second even-row-color"><code><a href="#gameOver" class="member-name-link">gameOver</a></code></div>
+<div class="col-first even-row-color"><code>private double</code></div>
+<div class="col-second even-row-color"><code><a href="#accumulator" class="member-name-link">accumulator</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>private static final int</code></div>
-<div class="col-second odd-row-color"><code><a href="#HEIGHT" class="member-name-link">HEIGHT</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#ASTEROID_SCORE_COAST" class="member-name-link">ASTEROID_SCORE_COAST</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Asteroid.html" title="class in spaceicebreaker.gui.game">Asteroid</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#asteroids" class="member-name-link">asteroids</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#bullets" class="member-name-link">bullets</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private <a href="../../models/GameClass.html" title="enum class in spaceicebreaker.models">GameClass</a></code></div>
+<div class="col-second even-row-color"><code><a href="#characterClass" class="member-name-link">characterClass</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#down" class="member-name-link">down</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Enemy.html" title="class in spaceicebreaker.gui.game">Enemy</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#enemies" class="member-name-link">enemies</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#ENEMY_SCORE_COAST" class="member-name-link">ENEMY_SCORE_COAST</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#enemyBullets" class="member-name-link">enemyBullets</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private <a href="../../controllers/GameController.html" title="class in spaceicebreaker.controllers">GameController</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#gameController" class="member-name-link">gameController</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private <a href="../../controllers/GameOperationsController.html" title="class in spaceicebreaker.controllers">GameOperationsController</a></code></div>
+<div class="col-second even-row-color"><code><a href="#gameOperationsController" class="member-name-link">gameOperationsController</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#gameOver" class="member-name-link">gameOver</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#HEIGHT" class="member-name-link">HEIGHT</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private long</code></div>
+<div class="col-second odd-row-color"><code><a href="#lastTimeNs" class="member-name-link">lastTimeNs</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>private boolean</code></div>
 <div class="col-second even-row-color"><code><a href="#left" class="member-name-link">left</a></code></div>
@@ -207,6 +213,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>private int</code></div>
 <div class="col-second odd-row-color"><code><a href="#spawnTick" class="member-name-link">spawnTick</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private static final double</code></div>
+<div class="col-second even-row-color"><code><a href="#TICK_MS" class="member-name-link">TICK_MS</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>private static final double</code></div>
+<div class="col-second odd-row-color"><code><a href="#TICK_RATE" class="member-name-link">TICK_RATE</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>private static final int</code></div>
 <div class="col-second even-row-color"><code><a href="#TIMER_DELAY_FOR_60_FPS" class="member-name-link">TIMER_DELAY_FOR_60_FPS</a></code></div>
@@ -309,42 +321,45 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enemiesUpdate()" class="member-name-link">enemiesUpdate</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initUI()" class="member-name-link">initUI</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gameTick()" class="member-name-link">gameTick</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#objectsSpawn()" class="member-name-link">objectsSpawn</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#paintComponent(java.awt.Graphics)" class="member-name-link">paintComponent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/Graphics.html" title="class or interface in java.awt" class="external-link">Graphics</a>&nbsp;g)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerMove()" class="member-name-link">playerMove</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initUI()" class="member-name-link">initUI</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerShoot()" class="member-name-link">playerShoot</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#objectsSpawn()" class="member-name-link">objectsSpawn</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restart()" class="member-name-link">restart</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#paintComponent(java.awt.Graphics)" class="member-name-link">paintComponent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/Graphics.html" title="class or interface in java.awt" class="external-link">Graphics</a>&nbsp;g)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setupControls()" class="member-name-link">setupControls</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerMove()" class="member-name-link">playerMove</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#spawnExplosion(double,double,java.awt.Color)" class="member-name-link">spawnExplosion</a><wbr>(double&nbsp;x,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerShoot()" class="member-name-link">playerShoot</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restart()" class="member-name-link">restart</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setupControls()" class="member-name-link">setupControls</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#spawnExplosion(double,double,java.awt.Color)" class="member-name-link">spawnExplosion</a><wbr>(double&nbsp;x,
  double&nbsp;y,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/Color.html" title="class or interface in java.awt" class="external-link">Color</a>&nbsp;c)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#userBulletsOnAsteroidUpdate(spaceicebreaker.gui.game.Bullet,java.util.Iterator)" class="member-name-link">userBulletsOnAsteroidUpdate</a><wbr>(<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&nbsp;b,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html" title="class or interface in java.util" class="external-link">Iterator</a>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;&nbsp;bIt)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#userBulletsOnAsteroidUpdate(spaceicebreaker.gui.game.Bullet,java.util.Iterator)" class="member-name-link">userBulletsOnAsteroidUpdate</a><wbr>(<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&nbsp;b,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#userBulletsOnEnemiesUpdate(spaceicebreaker.gui.game.Bullet,java.util.Iterator)" class="member-name-link">userBulletsOnEnemiesUpdate</a><wbr>(<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&nbsp;b,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html" title="class or interface in java.util" class="external-link">Iterator</a>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;&nbsp;bIt)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#userBulletsOnEnemiesUpdate(spaceicebreaker.gui.game.Bullet,java.util.Iterator)" class="member-name-link">userBulletsOnEnemiesUpdate</a><wbr>(<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&nbsp;b,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html" title="class or interface in java.util" class="external-link">Iterator</a>&lt;<a href="Bullet.html" title="class in spaceicebreaker.gui.game">Bullet</a>&gt;&nbsp;bIt)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#userBulletsUpdate()" class="member-name-link">userBulletsUpdate</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#userBulletsUpdate()" class="member-name-link">userBulletsUpdate</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -477,6 +492,18 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 </section>
 </li>
 <li>
+<section class="detail" id="lastTimeNs">
+<h3>lastTimeNs</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">lastTimeNs</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="accumulator">
+<h3>accumulator</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">accumulator</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="asteroids">
 <h3>asteroids</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Asteroid.html" title="class in spaceicebreaker.gui.game">Asteroid</a>&gt;</span>&nbsp;<span class="element-name">asteroids</span></div>
@@ -510,6 +537,34 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 <section class="detail" id="rnd">
 <h3>rnd</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a></span>&nbsp;<span class="element-name">rnd</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="TICK_RATE">
+<h3>TICK_RATE</h3>
+<div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">TICK_RATE</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../constant-values.html#spaceicebreaker.gui.game.GamePanel.TICK_RATE">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="TICK_MS">
+<h3>TICK_MS</h3>
+<div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">TICK_MS</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../constant-values.html#spaceicebreaker.gui.game.GamePanel.TICK_MS">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -698,6 +753,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desk
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/event/ActionListener.html#actionPerformed(java.awt.event.ActionEvent)" title="class or interface in java.awt.event" class="external-link">actionPerformed</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/event/ActionListener.html" title="class or interface in java.awt.event" class="external-link">ActionListener</a></code></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="gameTick()">
+<h3>gameTick</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">gameTick</span>()</div>
 </section>
 </li>
 <li>

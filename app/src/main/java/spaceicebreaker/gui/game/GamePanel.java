@@ -41,6 +41,9 @@ public class GamePanel extends JPanel implements ActionListener {
 
     private Timer windowTimer;
 
+    private long lastTimeNs = 0;
+    private double accumulator = 0;
+
     private final java.util.List<Asteroid> asteroids = new ArrayList<>();
     private final java.util.List<Enemy> enemies = new ArrayList<>();
     private final java.util.List<Bullet> bullets = new ArrayList<>();
@@ -48,6 +51,9 @@ public class GamePanel extends JPanel implements ActionListener {
     private final java.util.List<Particle> particles = new ArrayList<>();
 
     private final Random rnd = new Random();
+
+    private static final double TICK_RATE = 30.0;
+    private static final double TICK_MS = 1000.0 / TICK_RATE;
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
@@ -342,25 +348,36 @@ public class GamePanel extends JPanel implements ActionListener {
             return;
         }
 
+        long now = System.nanoTime();
+
+        if (lastTimeNs == 0) lastTimeNs = now;
+
+        double frameMs = (now - lastTimeNs) / 1_000_000.0;
+        lastTimeNs = now;
+
+        accumulator += frameMs;
+
+        if (accumulator > 200) accumulator = 200;
+
+        while (accumulator >= TICK_MS) {
+            gameTick();
+            accumulator -= TICK_MS;
+        }
+
+        repaint();
+    }
+
+    private void gameTick() {
         playerMove();
-
         playerShoot();
-
         objectsSpawn();
-
         asteroidsUpdate();
-
         enemiesUpdate();
-
         userBulletsUpdate();
-
         enemiesBulletsUpdate();
-
         effectsUpdate();
 
         if (gameController.getLivesCount() <= 0) gameOver = true;
-
-        repaint();
     }
 
     private void playerMove() {
@@ -477,8 +494,17 @@ public class GamePanel extends JPanel implements ActionListener {
             }
 
             if (rnd.nextInt(60) == 0) {
-                enemyBullets.add(
-                        new Bullet(en.x, en.y + 12, (playerX - en.x) * 0.05, (playerY - en.y) * 0.05 + 3, false));
+                double dx = playerX - en.x;
+                double dy = playerY - en.y;
+                double len = Math.sqrt(dx * dx + dy * dy);
+
+                double speed = 8.0;
+                if (len > 0) {
+                    dx = (dx / len) * speed;
+                    dy = (dy / len) * speed;
+                }
+
+                enemyBullets.add(new Bullet(en.x, en.y + 12, dx, dy, false));
             }
         }
     }

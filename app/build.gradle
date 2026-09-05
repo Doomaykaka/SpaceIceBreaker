@@ -138,7 +138,7 @@ launch4j {
   dontWrapJar = true
   headerType = "gui"
   jarTask = jar
-  outfile = "SpaceIceBreaker.exe.exe"
+  outfile = "SpaceIceBreaker.exe"
   priority = "normal"
   stayAlive = false
   restartOnCrash = false
